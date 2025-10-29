@@ -18,7 +18,7 @@
 	    <a href="01_bases.php">01.Bases</a>
         <a href="02_variables.php">02.Les variables</a>
         <a href="03_constantes.php">03.Les constantes</a>
-         <a href="04_arithmetiques.php">04.Arithmétiques</a>
+        <a href="04_arithmetiques.php">04.Arithmétiques</a>
         <a href="05_conditions.php">05.Conditions</a>
         <a href="06_tableaux.php">06.Tableaux</a>
         <a href="07_boucles.php">07.Boucles</a>
@@ -55,7 +55,7 @@
     $question1 = "mineur";
     $question2 = "je vote";
 
-    // seulement une des deux conditions doit être vraie pour que tout soit retourné true
+    // seulement une des deux conditions doit être vraie pour que tout soit retourné true, jamais plus d'une
     if($question1 == "mineur" XOR $question2 == "je vote"){
         echo "<p>Vos réponses sont cohérentes</p>";
     } else  {
@@ -87,31 +87,32 @@
 
     $var1 = 0;
     $var2 = "";
+    //$var3;
 
     /* méthode qui vérifie si la variables est vide, si elle est égale à 0 elle est considérée comme étant vide
         soit vraie
     */
     if(empty($var1)) {
-      echo "0, donc elle est vide, vraie ou non définie";  
+      echo "0, donc var1 est vide, vraie ou non définie" ."<br>";  
     } else {
-        echo "Elle n'est ni vide, elle est fausse et définie";
+        echo "var1 n'est ni vide, elle est fausse et définie" ."<br>";
     }
 
     if(empty($var2)) {
-      echo "0, donc elle est vide, vraie ou non définie";  
+      echo "0, donc var2 est vide, vraie ou non définie" ."<br>";  
     } else {
-        echo "Elle n'est ni vide, elle est fausse et définie";
+        echo "var2 n'est ni vide, elle est fausse et définie" ."<br>";
     }
 
 
     /* méthode qui vérifie si la variable existe avant tout traitement donc si on ne l'a pas définie elle renverra false
     */
-    if(isset($var2)) echo "<p>existe et est non NULL</p>";
+    if(isset($var2)) echo "<p>var2 existe et est non NULL</p>";
 
     if(isset($var3)) {
-        echo "<p>existe et est non NULL sur la var3</p>";
+        echo "<p>var3 existe et est non NULL sur la var3</p>";
     } else {
-        echo "<p>n'existe pas !</p>";
+        echo "<p>var3 n'existe pas !</p>";
     }
 
     // PS: ces méthodes sont utiles lorque l'on veut récupérer des informations sur un formulaire par exemple et 
@@ -132,6 +133,13 @@
         default: 
             echo "Aucune des couleurs n'a été choisie";
     }
+
+    // if($color === "rouge") {
+    //      echo "<p>C'est ma couleur préférée</p>";
+    // } elseif ($color === "Rouge") {
+    //     echo "<p>Je pense que j'aime aussi</p>";
+    // } elseif() ......
+
     ?>
 </body>
 </html>
