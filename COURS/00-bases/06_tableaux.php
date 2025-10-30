@@ -47,13 +47,20 @@
 
     echo 'Le type de $liste est : ' . gettype($liste) . '<br>';  // affiche le type array
     // echo $liste;  // erreur de type "Array to string conversion" car on ne peut pas afficher directement un array avec un echo
+    echo "Avec var_dump() :";
     var_dump($liste);
 
     echo '<pre>
             <p>print_r($liste);  // print_r est plus synthétique que var_dump : il n\'affiche pas le type des éléments contenus dans l\'array</p>
         </pre>';
 
+    echo "Avec print_r() :";
     echo print_r($liste);
+       /* 
+        array_merge() => pour fusionner deux tableaux 
+        array_push() ou $array[] = "valeur" => pour ajouter un élément dans un tableau
+    
+    */
 
     // fonction d'affichage d'un print_r avec balises pre :
     function debug($param) {
@@ -61,6 +68,8 @@
                 print_r($param, true) .
             '</pre>';
     }
+
+  
 
     // Autre méthode de déclaration d'un array :
     echo '<pre>
@@ -147,7 +156,12 @@
         0 => [
             'prenom'    => 'Julien',
             'nom'       => 'Dupon',
-            'telephone' => '0601020304'
+            'telephone' => '0601020304',
+            'domiciliation' => [
+                "numero" => "30",
+                "rue" => "rue de Issa",
+                "ville" => "IssaLand"
+            ],
         ],
         1 => [
             'prenom'    => 'Nicolas',
@@ -159,6 +173,9 @@
             'nom'       => 'Dulac'
         ]
     ]; // il est possible de choisir le nom des indices dans cet array multidimensionnel
+
+    echo "affichage du prénom: " . $tab_multi[0]['prenom'] . "<br>";
+    echo "affichage de la rue : " . $tab_multi[0]['domiciliation']['rue'];
 
     // exemple de modification d'indices dans le tableau
 //    $tab_multi = [
@@ -178,7 +195,8 @@
 //         ]
 //     ];
 
-    echo "affichage du prénom: " . $tab_multi['personne_2']['prenom'];
+
+    //echo "affichage du prénom: " . $tab_multi['personne_2']['prenom'];
 
 
     // $tab_multi = array(
@@ -240,11 +258,7 @@
     }
     echo '<hr>';
 
-    /* 
-        array_merge() => pour fusionner deux tableaux 
-        array_push() ou $array[] = "valeur" => pour ajouter un élément dans un tableau
-    
-    */
+   
 
     ?>
 
