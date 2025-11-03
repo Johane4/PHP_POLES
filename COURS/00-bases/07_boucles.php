@@ -132,6 +132,10 @@
         echo $valeur . '<br>';    // on affiche successivement les éléments du tableau à chaque tour de boucle. La foreach s'arrête automatiquement à la fin du tableau.
     }
 
+    
+    foreach ($tab as $indice => $valeur) {  // quand il y a 2 variables après "as", la première parcourt la colonne des indices (quelque soit son nom), et la seconde parcourt la colonne des valeurs (quelque soit son nom)
+        echo $indice . ' correspond à ' . $valeur . '<br>';
+    }
 
 
     // exemple foreach avec indice
@@ -142,11 +146,7 @@
             "Es" => 'Espagne',
             "Pt" => 'Portugal'
         ];
-
-
-    foreach ($tab as $indice => $valeur) {  // quand il y a 2 variables après "as", la première parcourt la colonne des indices (quelque soit son nom), et la seconde parcourt la colonne des valeurs (quelque soit son nom)
-        echo $indice . ' correspond à ' . $valeur . '<br>';
-    }
+    
 
         echo "<p>Les pays du monde sont :</p>";
        
