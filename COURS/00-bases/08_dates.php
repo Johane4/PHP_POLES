@@ -32,10 +32,12 @@
     echo '<h2> Gestion des dates </h2>';
     //--------------------
     echo '<pre>';
+        // Définir le fuseau horaire au préalable
+        date_default_timezone_set("Europe/Paris");
         echo 'echo date(\'d/m/Y H:i:s\');// date() retourne la date de maintenant selon le format indiqué. d pour jour, m pour mois, Y pour année sur 4 chiffres, y pour année sur 2 chiffres, H pour heure sur 24h, h pour heure sur 12h, i pour minute et s pour seconde;';
     echo '</pre>';
     echo '<p>' . date('d/m/Y H:i:s') . '</p>';  // date() retourne la date de maintenant selon le format indiqué. d pour jour, m pour mois, Y pour année sur 4 chiffres, y pour année sur 2 chiffres, H pour heure sur 24h, h pour heure sur 12h, i pour minute et s pour seconde.   
-
+ 
     echo '<pre>';
         echo 'echo date(\'Y-m-d\');// on peut changer l\'ordre des paramètres ainsi que le séparateur';
     echo '</pre>';
