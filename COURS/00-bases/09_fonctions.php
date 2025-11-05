@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@
         <a href="10_inclusion.php">10.Inclusion</a>
     </div>
 
-<?php
+    <?php
     //--------------------
     echo '<h2> Quelques fonctions prédéfinies </h2>';
     //--------------------
@@ -79,7 +80,8 @@
     // Des fonctions sont des morceaux de codes encapsulés dans des accolades et portant un nom, qu'on appelle au besoin pour exécuter le code qui s'y trouve.
 
     // Déclaration d'une fonction :
-    function separation() {  // déclaration d'une fonction sans paramètre
+    function separation()
+    {  // déclaration d'une fonction sans paramètre
         echo '<hr>';
     }
 
@@ -89,7 +91,8 @@
 
     //---
     // Fonction avec paramètre et return :
-    function bonjour($qui) {  // $qui est un paramètre
+    function bonjour($qui)
+    {  // $qui est un paramètre
         return 'Bonjour ' . $qui . '<br>'; // return renvoie le string qui le suit
     }
 
@@ -99,12 +102,14 @@
 
     //---
     // Exercice :
-    function appliqueTva($nombre) {
+    function appliqueTva($nombre)
+    {
         return $nombre * 1.2;
     }
 
     // Ecrivez une fonction appliqueTva2 qui calcule un nombre multiplié par un taux donnés lors de l'appel de la fonction.
-    function appliqueTva2($nombre, $taux = 1.2) {  // paramètre par défaut
+    function appliqueTva2($nombre, $taux = 1.2)
+    {  // paramètre par défaut
         return $nombre * $taux;
     }
 
@@ -114,7 +119,8 @@
 
     //---
     // Exercice :
-    function meteo($saison) {
+    function meteo($saison)
+    {
         echo "Nous sommes en $saison. <br>";
     }
 
@@ -124,7 +130,8 @@
 
     // Au sein d'une nouvelle fonction exoMeteo, afficher l'article "au" ou "en" selon la saison (en été, en hiver, en automne, au printemps). 
 
-    function exoMeteo($saison) {
+    function exoMeteo($saison)
+    {
         if ($saison === 'printemps') {
             $article = 'au';
         } else {
@@ -141,7 +148,8 @@
     // Variables locales et variables globales :
 
     // De l'espace local à l'espace global :
-    function jourSemaine() {
+    function jourSemaine()
+    {
         $jour = 'mardi';  // variable locale à la fonction
         return $jour;  // return permet de sortir une valeur de la fonction
     }
@@ -154,7 +162,8 @@
     // De l'espace global à l'espace local :
     $pays = 'France';  // variable globale
 
-    function affichePays() {
+    function affichePays()
+    {
         global $pays; // le mot clé "global" permet de récupérer une variable globale au sein de l'espace local de la fonction
         echo $pays;  // affiche France
     }
@@ -163,5 +172,5 @@
     affichePays();
     ?>
 </body>
-</html>
 
+</html>
