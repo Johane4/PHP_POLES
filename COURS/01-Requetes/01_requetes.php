@@ -51,7 +51,7 @@
     <code>
         <body>
             <!-- Notez l'ajout des paramètres dans l'URL de l'action -->
-            <form action="">
+            <form action="" method="post">
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" >
         
@@ -68,6 +68,25 @@
     <pre>
     <code>
         <?php
+
+
+        // DATA POST
+        // On va vérifier si les informations transmises via le formulaire sont existantes ou non
+        $nom = isset($_POST['nom']) && !empty($_POST['nom']) ? $_POST['nom'] : "Le nom n'est pas fourni";
+
+        // la même chose que le ternaire du dessus 
+        //  if(isset($_GET['nom']) && !empty($_GET['nom'])) {
+        //     $nom = $_GET['nom']; 
+        // } else {
+        //     $nom = "Le nom n'est pas fourni";
+        // }
+
+        $prenom = isset($_POST['prenom']) && !empty($_POST['prenom']) ? $_POST['prenom'] : "Le prenom n'est pas fourni";
+
+        // Affichage des datas 
+        echo "Nom (via POST):" . $nom . "<br>";
+        echo "Prénom (via POST):" . $prenom . "<br>";
+
         ?>
     </code>
 
