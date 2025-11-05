@@ -4,6 +4,7 @@ include 'includes/header.php';
 
 echo '<p>Ouverture de passage PHP pour y insérer du code !</p>', "Avec echo";
 
+
 ?>
 
 <div class="texte">
