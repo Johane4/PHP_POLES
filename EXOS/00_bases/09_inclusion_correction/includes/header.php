@@ -1,5 +1,6 @@
 <?php
 // Ce fichier génère le header de chaque page, incluant le titre du site et une barre de navigation.
+// Note : Il n'est pas nécessaire d'inclure config.php ici directement car ce fichier est généralement inclus après qu'un fichier parent (index.php) ait déjà inclus config.php.
 
 ?>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo SITE_NAME; ?></title>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body>
