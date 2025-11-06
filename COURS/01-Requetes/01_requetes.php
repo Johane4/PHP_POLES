@@ -51,7 +51,7 @@
     <code>
         <body>
             <!-- Notez l'ajout des paramètres dans l'URL de l'action -->
-            <form action="" method="post">
+            <form action="?keyName=flament&motif=augmentation" method="post">
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" >
         
@@ -75,8 +75,8 @@
         $nom = isset($_POST['nom']) && !empty($_POST['nom']) ? $_POST['nom'] : "Le nom n'est pas fourni";
 
         // la même chose que le ternaire du dessus 
-        //  if(isset($_GET['nom']) && !empty($_GET['nom'])) {
-        //     $nom = $_GET['nom']; 
+        //  if(isset($POST['nom']) && !empty($POST['nom'])) {
+        //     $nom = $POST['nom']; 
         // } else {
         //     $nom = "Le nom n'est pas fourni";
         // }
@@ -84,8 +84,26 @@
         $prenom = isset($_POST['prenom']) && !empty($_POST['prenom']) ? $_POST['prenom'] : "Le prenom n'est pas fourni";
 
         // Affichage des datas 
-        echo "Nom (via POST):" . $nom . "<br>";
-        echo "Prénom (via POST):" . $prenom . "<br>";
+
+        echo "Nom (via POST):" . htmlspecialchars($nom) . "<br>";
+        echo "Prénom (via POST):" . htmlspecialchars($prenom) . "<br>";
+        /* htmlspecialchars() permet d'éviter les éventuelles attaques XSS, c'est à dire qu'on empêche un utilisateur malveillant d'injecter du code interprétable sur le site 
+        exemple si on fait une condition :
+        $nom = $isset($_GET['prenom']) ? echo "je rajoute du code malveillant pour récupérer des infos : echo "je laisse tomber je poursuis quand même ma malveillance mouahahah !!
+        avec la fonction les instructions ne seront pas interpretées mais écrites telles qu'on le voit ;)
+
+        A utiliser quand on affiche les données et pas quand on les envoit !
+
+        2- DATAS GET METHOD
+        */
+        $keyName = isset($_GET['keyName']) && !empty($_GET['keyName']) ? $_GET['keyName'] : "Aucun nom récupéré";
+        $motif = isset($_GET['motif']) && !empty($_GET['motif']) ? $_GET['motif'] : "Aucun motif récupéré";
+
+        echo "Nom (via GET): La personne malveillante du doux nom de " . htmlspecialchars($keyName) . "<br>";
+        echo "Motif (via GET): demande une " . htmlspecialchars($motif) . "<br>";
+
+
+
 
         ?>
     </code>
