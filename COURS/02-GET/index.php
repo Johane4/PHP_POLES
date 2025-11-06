@@ -16,9 +16,10 @@
     </div>
     <h1>Nos produits</h1>
 
-    <a href="">Jean bleu</a>
-    <a href="">Robe rouge</a>
-    <a href="">Pull blanc</a>
+    <!-- indique sur quelle fichier récupérer les paramètres -->
+    <a href="page2.php?clth=jean&color=bleu&price=40">Jean bleu</a>
+    <a href="page2.php?clth=robe&color=rouge&price=60">Robe rouge</a>
+    <a href="page2.php?clth=pull&color=blanc&price=20">Pull blanc</a>
 
 </body>
 
