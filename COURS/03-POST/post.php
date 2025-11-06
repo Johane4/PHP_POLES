@@ -96,17 +96,11 @@
 
         // Syntaxe de $_POST : $_POST = array('name1' => 'valeur input1', 'nameN' => 'valeur inputN');
 
-        // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        //     echo '<div class="result">';
-        //     echo '<h1>Résultats du formulaire</h1>';
-        //     echo '<p>Prénom : ' . htmlspecialchars($_POST['prenom']) . '</p>';
-        //     echo '<p>Description : ' . htmlspecialchars($_POST['description']) . '</p>';
-        //     echo '</div>';
-        // }
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if(empty($_POST['prenom']) || empty($_POST['description'])) {
-                   echo "<p>Remplir tous les champs !</p>";   
+            if (empty($_POST['prenom']) || empty($_POST['description'])) {
+                echo "<p>Remplir tous les champs !</p>";
             } else {
                 echo '<div class="result">';
                 echo '<h1>Résultats du formulaire</h1>';
