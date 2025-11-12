@@ -55,8 +55,8 @@
     <code>
         <?php
         // Récupération des paramètres de l'URL
-        $id = $_GET['id'];
-        $type = $_GET['type'];
+        // $id = $_GET['id'];
+        // $type = $_GET['type'];
 
         // Récupération des données POST
         $nom = $_POST['nom'];

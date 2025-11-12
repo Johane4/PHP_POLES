@@ -42,6 +42,12 @@
         echo '<p class="error">Aucun produit n\'a été trouvé !</p>';
     }
 
+    if (isset($_GET['produit']) && !empty($_GET['produit'])) {
+        $produit =  htmlspecialchars($_GET['produit']); // sécurise un minimum les données qu'on affiche
+        echo "<p>Résultats de la recherche: $produit <p>";
+    } else {
+        echo "<p>Aucun résultat trouvé !<p>";
+    }
 
     ?>
 </body>
