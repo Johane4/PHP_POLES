@@ -26,6 +26,16 @@
     Le cookie étant sauvegardé sur le poste de l'internaute, il peut être volé ou détourné. On n'y mettra donc pas d'informations sensibles (mots de passe, carte bancaire, ...), mais des informations relatives aux préférences ou aux traces de visite (produits consultés...).
     */
 
+    // 2- On détermine la langue à afficher dans la variable $langue :
+    print_r($_GET);
+
+    if (isset($_GET['langue'])) {
+        $langue = $_GET['langue'];
+    } else if (isset($_COOKIE['langue'])) {
+        $langue = $_COOKIE['langue'];
+    } else {
+        $langue = "fr";
+    }
 
 
     // 1- Création du cookie :
@@ -42,15 +52,16 @@
         du cookie (facultatives).
     */
 
+    setcookie("langue", $langue, time() + 365 * 24 * 60 * 60);
 
-
-
-
-    // 2- On détermine la langue à afficher dans la variable $langue :
+    var_dump($_COOKIE);
 
 
 
     // 3- Affichage de la langue :
+    echo "<div class='result'>";
+    echo "<h1>Le site est traduit en : " . $langue . "</h1>";
+    echo "</div>";
 
 
 
@@ -58,7 +69,10 @@
     // Supprime le cookie en fixant une date d'expiration passée
     // Il n'existe pas de fonction prédéfinie pour supprimer un cookie. Dans ce cas, on le met à jour avec une date périmée ou à zéro, ou encore en ne mettant que le nom du cookie dans les () de setcookie.
 
-
+    if (isset($_GET['delete_cookie'])) {
+        setcookie("langue", "", time() - 3600);
+        echo "<p>Le cookie a bien été supprimé !</p>";
+    }
 
 
     ?>
@@ -68,7 +82,7 @@
         <ul>
             <li><a href="?langue=fr">Français</a></li>
             <li><a href="?langue=es">Espagnol</a></li>
-            <li><a href="?langue=it">Italien</a></li>
+            <li><a href="lingua.it.php?langue=it">Italien</a></li>
             <li><a href="?langue=en">Anglais</a></li>
         </ul>
 
