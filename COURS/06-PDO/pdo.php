@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,9 +45,8 @@
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  // pour afficher les messages d'erreur SQL
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'  // définition du jeu de caractères des échanges avec la BDD
             ]
-    );
+        );
         echo '<p>Connexion à la base de données réussie !</p>';
-
     } catch (PDOException $e) {
         // Si une erreur survient lors de la connexion, on la capture
         echo '<p class="error">Erreur de connexion à la base de données : ' . $e->getMessage() . '</p>';
@@ -64,19 +64,19 @@
     //---------------------------------------
     // exec() est utilisée pour la formulation de requêtes ne retournant pas de résultat : INSERT, DELETE, UPDATE.
 
-    //$resultat = $pdo->exec("INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES ('daniel', 'Baugrand', 'm', 'informatique', '2016-02-08', 500)");
+    //$resultat = $pdo->exec("INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES ('lola', 'watson', 'f', 'comptabilité', '2020-02-08', 200)");
 
     // /* Valeur de retour :
     //     - Succès : renvoie le nombre de lignes affectées par la requête
     //     - Echec  : retourne false
     // */
 
-     //echo "Nombre de lignes affectées par le INSERT : $resultat <br>";
-     //echo 'Dernier id généré par la BDD : ' . $pdo->lastInsertId();
+    //echo "Nombre de lignes affectées par le INSERT : $resultat <br>";
+    //echo 'Dernier id généré par la BDD : ' . $pdo->lastInsertId();
 
     // //-----
-    // // $resultat = $pdo->exec("DELETE FROM employes WHERE prenom = 'daniel' ");
-    // echo "<br> Nombre de lignes affectées par le DELETE : $resultat <br>";
+    $resultat = $pdo->exec("DELETE FROM employes WHERE id = 42 ");
+    echo "<br> Nombre de lignes affectées par le DELETE : $resultat <br>";
 
 
 
@@ -188,8 +188,8 @@
         }
 
         echo '<td><a href="?action=suppression&id=' . $ligne['id'] . '">supprimer</a></td>';
-                        // ?action=delete
-                        // ?action=update
+        // ?action=delete
+        // ?action=update
         echo '</tr>';
     }
     echo '</table>';
@@ -261,12 +261,14 @@
     //---------------------------------------
 
     $nom = 'thoyer';
+    $id = 12;
 
     // 1- prépare la requête :
-    $resultat = $pdo->prepare("SELECT * FROM employes WHERE nom = :nom");
+    $resultat = $pdo->prepare("SELECT * FROM employes WHERE nom = :nom /*AND WHERE id = :id*/");
 
     // 2- lier les marqueurs aux valeurs :
-    $resultat->bindValue(':nom', $nom);  // bindValue() reçoit une variable OU une valeur directement. Le marqueur point uniquement vers la valeur : si celle-ci change, il faudra refaire un bindValue lors d'un nouvel execute() pour tenir compte de cette nouvelle valeur (sinon le marqueur conserve l'ancienne valeur).
+    $resultat->bindValue(':nom', $nom);
+    //$resultat->bindValue(':id', $id);  // bindValue() reçoit une variable OU une valeur directement. Le marqueur point uniquement vers la valeur : si celle-ci change, il faudra refaire un bindValue lors d'un nouvel execute() pour tenir compte de cette nouvelle valeur (sinon le marqueur conserve l'ancienne valeur).
 
     // 3- exécuter la requête :
     $resultat->execute();
@@ -299,7 +301,7 @@
     // 2ème VERSION PLUS MODERNE
     // On peut aussi utiliser cette syntaxe directement :
     // Syntaxe plus moderne
-    $resultat->execute(['pascaline', 'daniel']);// on peut remplacer les 2 bindValue et le execute() précédents par cette ligne, en passant un array à la méthode execute(). Les valeurs sont dans le même ordre que les marqueurs dans la requête 
+    $resultat->execute(['pascaline', 'daniel']); // on peut remplacer les 2 bindValue et le execute() précédents par cette ligne, en passant un array à la méthode execute(). Les valeurs sont dans le même ordre que les marqueurs dans la requête 
     // $resultat->execute(array('pascaline', 'daniel'));  
 
     $donnees = $resultat->fetch(PDO::FETCH_ASSOC);
@@ -333,8 +335,8 @@
 
     // exemple de requête :
     $resultat = $mysqli->query("SELECT * FROM employes");
-    
-?>
+
+    ?>
 
 </body>
 
