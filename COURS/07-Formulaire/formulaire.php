@@ -25,14 +25,14 @@ var_dump((dirname($_SERVER['REQUEST_URI'])));
     <div class="header-img">
         <img src="./img/logo_poleS.png" alt="Logo PoleS">
     </div>
-    <form method="post" action="formulaireController.php">
+    <form method="POST" action="formulaireController.php">
         <h1>Ajouter un employé</h1>
 
         <!-- Erreur d'insertion à corriger de mon côté ! -->
 
         <!-- Message d'erreur ou succès -->
-        <?php if (!empty($_SESSION['message'])): ?>
-            <div class="message <?php strpos($message, 'Erreur') ? 'success' : 'error' ?>"><?php $message ?></div>
+        <?php if (!empty($message)): ?>
+            <div class="message <?php strpos($message, 'Erreur') ? 'success' : 'error' ?>"><?= $message ?></div>
         <?php endif; ?>
 
         <label for="prenom">Prénom</label>

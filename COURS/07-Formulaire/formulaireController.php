@@ -16,15 +16,15 @@ $message = '';  // variable pour afficher les messages d'erreur
 if (!empty($_POST)) {
 
     // Contrôles du formulaire :
-    if (!isset($_POST['prenom']) || strlen($_POST['prenom']) < 3 || strlen($_POST['prenom']) > 20) {
+    if (empty($_POST['prenom']) || mb_strlen($_POST['prenom']) < 3 || mb_strlen($_POST['prenom']) > 20) {
         $message .= '<p class="error">Erreur: Le prénom doit comporter entre 3 et 20 caractères.</p>';
     }
 
-    if (!isset($_POST['nom']) || strlen($_POST['nom']) < 3 || strlen($_POST['nom']) > 20) {
+    if (empty($_POST['nom']) || mb_strlen($_POST['nom']) < 3 || mb_strlen($_POST['nom']) > 20) {
         $message .= '<p class="error">Erreur: Le nom doit comporter entre 3 et 20 caractères.</p>';
     }
 
-    if (!isset($_POST['service']) || strlen($_POST['service']) < 3 || strlen($_POST['service']) > 30) {
+    if (empty($_POST['service']) || mb_strlen($_POST['service']) < 3 || mb_strlen($_POST['service']) > 30) {
         $message .= '<p class="error">Erreur: Le service doit comporter entre 3 et 30 caractères.</p>';
     }
 
@@ -32,27 +32,27 @@ if (!empty($_POST)) {
         $message .= '<p class="error">Erreur: Le sexe n\'est pas valide.</p>';
     }
 
-    if (!isset($_POST['date_embauche']) || !strtotime($_POST['date_embauche'])) {
+    if (empty($_POST['date_embauche']) || !strtotime($_POST['date_embauche'])) {
         $message .= '<p class="error">Erreur: La date n\'est pas valide.</p>';
     }
 
-    if (!isset($_POST['salaire']) || !is_numeric($_POST['salaire']) || $_POST['salaire'] <= 0) {
+    if (empty($_POST['salaire']) || !is_numeric($_POST['salaire']) || $_POST['salaire'] <= 0) {
         $message .= '<p class="error">Erreur: Le salaire doit être un nombre positif.</p>';
     }
     
-// 4 . Vérifications avec preg_match()
+    // 4 . Vérifications avec preg_match()
 
     // la fonction preg_match() va nous servir à vérifier un certain nombre d'élements grâce aux expressions régulières
     /**
-     * Une expression régulière est une chaîne de caractères type, un motif (pattern), qui décrit un ensemble de chaînes de caractères possibles.   
+     * Une expression régulière est une c haîne de caractères type, un motif (pattern), qui décrit un ensemble de chaînes de caractères possibles.   
      * C’est un modèle interprété par un moteur, lequel va essayer de trouver des correspondances du modèle dans le texte recherché.
      */
     // on va utiliser une série de symboles pour l'utiliser 
     // Exemple pour vérifier la date d'embauche dans le traitement du formulaire
 
-    if (preg_match('/^\d{2}-\d{2}-\d{4}$/', $_POST['date_embauche'] == 0)) {
-        $message .= '<p class="error">Erreur: La date fournie n\'est pas correcte.</p>';
-    }
+    // if (!preg_match('/^\d{2}-\d{2}-\d{4}$/', $_POST['date_embauche'])) {
+    //     $message .= '<p class="error">Erreur: La date fournie n\'est pas correcte.</p>';
+    // }
 
 
     // qu'est ce que c'est que ce charabia ? 
@@ -69,56 +69,67 @@ if (!empty($_POST)) {
 
     //-----
     // Si la variable $message est vide, c'est que le formulaire est valide : on peut enregistrer en BDD :
-    if (empty($message)) {
+    $dateInput = $_POST['date_embauche'] ?? '';
 
-        $date = new DateTime($_POST['date_embauche']);
-        $date_embauche = $date->format('Y-m-d');
+    if (!$dateInput) {
+        $message .= '<p class="error">Erreur: La date est obligatoire.</p>';
+    } else {
+        // Vérifie que la date existe et est au bon format (jj-mm-aaaa)
+        $d = DateTime::createFromFormat('d-m-Y', $dateInput);
 
-
-        // Try,catch : 
-        // try contient le code à tester qui pourrait potentiellement causer une Exception (une erreur), si c'est le cas, il transfert l'erreur au bloc catch qui se chargera de l'afficher 
-
-        try {
-
-            $request = $pdo->prepare("INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES (:prenom, :nom, :sexe, :service, :date_embauche, :salaire)");
-
-            $request->bindParam(':prenom', $_POST['prenom']);
-            $request->bindParam(':nom', $_POST['nom']);
-            $request->bindParam(':sexe', $_POST['sexe']);
-            $request->bindParam(':service', $_POST['service']);
-            $request->bindParam(':date_embauche', $date_embauche);
-            $request->bindParam(':salaire', $_POST['salaire']);
-
-            $result = $request->execute();
-            var_dump($result);
-
-            if ($result) {
-                $message .= '<p class="success">L\'employé(e) a bien été ajouté(e).</p>';
-            } else {
-                $message .= '<p class="error">Erreur: Problème lors de l\'enregistrement de l\'employé(e).</p>';
-            }
-            // ATTENTION : lors du déploiement de l'application, on ne laisse JAMAIS apparaître les erreurs sur le client, on va préferer enregistrer l'erreur dans un fichier de logs par exemple avec error_log(), puis retourner une page 500 à l'utilisateur en le redirigeant dessus
-
-
-            // error_log($e->getMessage(), 3, 'chemin/vers/l\'erreur');
-            // header('Location: page_500.php');
-            // exit;
-
-        } catch (PDOException $e) {
-            echo '<p class="error">Erreur : Erreur serveur lors de l\'insertion' . $e->getMessage() . '</p>';
-            die; // Arrête le script si la connexion échoue
+        if (!$d || $d->format('d-m-Y') !== $dateInput) {
+            $message .= '<p class="error">Erreur: Format invalide : utilisez jj-mm-aaaa.</p>';
+        } else {
+            $date_embauche = $d->format('Y-m-d'); // conversion finale pour la BDD
         }
     }
 
-    // On stocke le message dans la session
+    // Stocker les erreurs dans la session
+    if (!empty($message)) {
+        $_SESSION['message'] = $message;
+        // Redirection vers le formulaire
+        header('Location: formulaire.php');
+
+        exit; // On sort du script après la redirection
+    }
+
+    // Try,catch : 
+    // try contient le code à tester qui pourrait potentiellement causer une Exception (une erreur), si c'est le cas, il transfert l'erreur au bloc catch qui se chargera de l'afficher 
+
+    try {
+
+        $request = $pdo->prepare("INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES (:prenom, :nom, :sexe, :service, :date_embauche, :salaire)");
+
+        $request->bindParam(':prenom', $_POST['prenom']);
+        $request->bindParam(':nom', $_POST['nom']);
+        $request->bindParam(':sexe', $_POST['sexe']);
+        $request->bindParam(':service', $_POST['service']);
+        $request->bindParam(':date_embauche', $date_embauche);
+        $request->bindParam(':salaire', $_POST['salaire']);
+
+        $result = $request->execute();
+        var_dump($result);
+
+        if ($result) {
+            $message .= '<p class="success">L\'employé(e) a bien été ajouté(e).</p>';
+        } else {
+            $message .= '<p class="error">Erreur: Problème lors de l\'enregistrement de l\'employé(e).</p>';
+        }
+        // ATTENTION : lors du déploiement de l'application, on ne laisse JAMAIS apparaître les erreurs sur le client, on va préferer enregistrer l'erreur dans un fichier de logs par exemple avec error_log(), puis retourner une page 500 à l'utilisateur en le redirigeant dessus
+
+
+        // error_log($e->getMessage(), 3, 'chemin/vers/l\'erreur');
+        // header('Location: page_500.php');
+        // exit;
+
+    } catch (PDOException $e) {
+        $message .= '<p class="error">Erreur : Erreur serveur lors de l\'insertion' . $e->getMessage() . '</p>';
+    }
+
     $_SESSION['message'] = $message;
-
-    // Redirection vers le formulaire
-
     header('Location: formulaire.php');
-    exit; // On sort du script après la redirection
-
-
+    exit;
+}
     /*    Ajouter photo profil (BONUS)
  * 
  *  Objectif : Ajouter une photo de profil à l'utilisateur (il faudra créer un nouveau formulaire 'modif user' et une requête UPDATE pour la BDD et non INSERT INTO), l'image doit être nullable
@@ -172,4 +183,3 @@ if (!empty($_POST)) {
         exit;
     } 
 */
-}
