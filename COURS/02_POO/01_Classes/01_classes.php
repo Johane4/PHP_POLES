@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POO en PHP</title>
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -49,9 +49,9 @@
     <p>La visibilité détermine comment les propriétés et méthodes peuvent être accessibles à l'extérieur de la classe.</p>
 
     <ul>
-        <li><code>public</code> : Accessible de n'importe où (à l'intérieur et à l'extérieur de la classe).</li>
-        <li><code>private</code> : Accessible uniquement dans la classe à laquelle elle appartient.</li>
-        <li><code>protected</code> : Accessible dans la classe à laquelle elle appartient ainsi que dans ses classes héritées.</li>
+        <li><code>public</code> : Accessible de n'importe où (à l'intérieur et à l'extérieur de la classe). Données publiques et non sensibles</li>
+        <li><code>private</code> : Accessible uniquement dans la classe à laquelle elle appartient. Données sensibles et privées</li>
+        <li><code>protected</code> : Accessible dans la classe à laquelle elle appartient ainsi que dans ses classes héritées. Données à moitié privées</li>
     </ul>
 
     <pre><code>class Personne {
@@ -142,21 +142,25 @@ $personne = new Personne('Alice', 30); // Instanciation de classe</code></pre>
 
     <?php
 
-    class Personne{
+    class Personne
+    {
         public $nom;
         private static $clickCount = 0;
 
-        public function __construct($nom){
+        public function __construct($nom)
+        {
             $this->nom = $nom;
             self::$clickCount++;
         }
 
-        public function jeSuis(){
+        public function jeSuis()
+        {
             echo "Je m'appelle: $this->nom. <br />";
         }
 
-        public static function getClickCount() {
-            return "On a créé ". self::$clickCount . " personne(s). <br />";
+        public static function getClickCount()
+        {
+            return "On a créé " . self::$clickCount . " personne(s). <br />";
         }
     }
 
@@ -190,7 +194,7 @@ class Employe extends Personne {
     }
 }
 
-<?php 
+<?php
 // class Personne {
 //     public function sePresenter() {
 //         echo "Je suis une personne.<br />";
@@ -281,17 +285,20 @@ $button3->click();
 echo "Nombre total de clics : " . Button::getClickCount(); // Affiche 4
 
 <?php
-class Button {
+class Button
+{
     // Propriété statique pour compter les clics
     private static $clickCount = 0;
 
     // Méthode pour cliquer sur le bouton
-    public function click() {
+    public function click()
+    {
         self::$clickCount++;
     }
 
     // Méthode statique pour récupérer le nombre total de clics
-    public static function getClickCount() {
+    public static function getClickCount()
+    {
         return self::$clickCount;
     }
 }
