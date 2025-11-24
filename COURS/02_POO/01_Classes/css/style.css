@@ -1,0 +1,147 @@
+/* Global styles */
+body {
+	background-color: #ffffff;
+	/* Fond blanc */
+	color: #8b0000;
+	/* Texte rouge foncé */
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: auto;
+	padding: 0;
+	max-width: 90%;
+}
+
+/* Header Image */
+.header-img {
+	text-align: center;
+	/* Centrer l'image */
+	margin-top: 20px;
+}
+
+.header-img img {
+	max-width: 200px;
+	/* Ajuste la taille du logo si nécessaire */
+	height: auto;
+	/* Maintient les proportions de l'image */
+}
+
+/* Title and text styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #8b0000;
+	/* Rouge foncé pour les titres */
+	margin-bottom: 20px;
+	border-bottom: 2px solid #8b0000;
+	/* Ligne sous les titres */
+	padding-bottom: 10px;
+}
+
+p {
+	margin-bottom: 20px;
+}
+
+/* Links */
+a {
+	color: #8b0000;
+	/* Rouge foncé pour les liens */
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Buttons */
+button,
+input[type="submit"],
+input[type="button"] {
+	background-color: #8b0000;
+	/* Rouge foncé pour les boutons */
+	color: #ffffff;
+	/* Blanc pour le texte des boutons */
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 4px;
+	/* Coins arrondis pour les boutons */
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+	background-color: #a30000;
+	/* Légèrement plus clair pour l'effet hover */
+}
+
+/* Form and inputs */
+form {
+	background-color: #f8f8f8;
+	/* Gris clair pour le fond du formulaire */
+	border: 1px solid #8b0000;
+	/* Rouge foncé pour la bordure du formulaire */
+	border-radius: 8px;
+	padding: 20px;
+	max-width: 600px;
+	margin: 20px auto;
+}
+
+input,
+select,
+textarea {
+	border: 1px solid #8b0000;
+	/* Rouge foncé pour les bordures */
+	padding: 10px;
+	font-size: 16px;
+	width: calc(100% - 22px);
+	/* Ajuste la largeur en tenant compte du padding */
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	/* Coins arrondis pour les champs de formulaire */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border-color: #a30000;
+	/* Légèrement plus clair au focus */
+}
+
+/* Tables */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+th,
+td {
+	padding: 12px;
+	border: 1px solid #8b0000;
+	/* Rouge foncé pour les bordures de table */
+	text-align: left;
+}
+
+th {
+	background-color: #8b0000;
+	/* Rouge foncé pour l'entête */
+	color: #ffffff;
+	/* Blanc pour le texte de l'entête */
+}
+
+/* Footer */
+footer {
+	background-color: #8b0000;
+	/* Rouge foncé pour le fond */
+	color: #ffffff;
+	/* Blanc pour le texte */
+	text-align: center;
+	padding: 20px 0;
+	margin-top: 40px;
+}
