@@ -1,0 +1,83 @@
+/* Style global */
+body {
+	font-family: Arial, sans-serif;
+	background-color: #fff;
+	color: #333;
+	max-width: 80%;
+	margin: auto;
+	padding: 0;
+	line-height: 1.6;
+}
+
+/* Style pour l'image de l'en-tête */
+.header-img {
+	text-align: center;
+	padding: 20px 0;
+	margin-bottom: 20px;
+}
+
+.header-img img {
+	max-width: 150px;
+}
+
+/* Style pour les titres principaux */
+h1,
+h2 {
+	color: #d9534f;
+	/* Rouge */
+	margin: 20px 0 10px;
+}
+
+/* Style pour les paragraphes */
+p {
+	margin: 10px 0;
+	color: #333;
+}
+
+/* Séparateurs */
+hr {
+	border: 1px solid #d9534f;
+	/* Rouge */
+	margin: 20px 0;
+}
+
+/* Style pour les blocs de code */
+pre {
+	background-color: #f5f5f5;
+	padding: 10px;
+	border-left: 5px solid #d9534f;
+	/* Rouge */
+	overflow-x: auto;
+}
+
+code {
+	color: #c9302c;
+	/* Rouge foncé */
+	font-family: "Courier New", Courier, monospace;
+}
+
+/* Style pour les listes */
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+li {
+	background-color: #d9534f;
+	/* Rouge */
+	color: #fff;
+	margin: 5px 0;
+	padding: 5px 10px;
+	border-radius: 3px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.header-img img {
+		max-width: 100px;
+	}
+
+	pre {
+		padding: 5px;
+	}
+}

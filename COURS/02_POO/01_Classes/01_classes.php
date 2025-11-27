@@ -108,7 +108,7 @@ $personne = new Personne('Alice', 30); // Instanciation de classe</code></pre>
     <p>Le mot clé parent est utilisé pour faire référence directement à la classe parente et accéder aux méthodes ou propriétés de cette classe</p>
 
     <p>Syntaxe de parent : parent::nomDeLaMethode();</p>
-    <p>parent::nomDeLaPropriété();</p>
+    <p>parent::nomDeLaPropriété;</p>
 
     <pre><code>class Personne{
         public $nom;
