@@ -31,7 +31,7 @@
 
         // Vérifie si le fichier de la classe existe et l'inclut
         if (file_exists($root)) {
-            require $root;
+            require_once $root;
         } else {
             throw new Exception("La classe $className n'a pas été trouvée !");
         }

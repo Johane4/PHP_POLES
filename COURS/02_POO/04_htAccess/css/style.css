@@ -1,0 +1,56 @@
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4; /* Gris très clair pour le fond de page */
+	color: #333; /* Couleur de texte standard */
+}
+
+.header-img {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.header-img img {
+	max-width: 100%;
+	height: auto;
+}
+
+h1,
+h2,
+h3 {
+	color: #d9534f; /* Rouge */
+	margin: 0 0 10px 0;
+}
+
+p {
+	margin: 10px 0;
+}
+
+hr {
+	border: 1px solid #d9534f; /* Rouge */
+	margin: 20px 0;
+}
+
+code {
+	background: #fff; /* Blanc */
+	border: 1px solid #ddd; /* Gris clair */
+	padding: 2px 4px;
+	border-radius: 3px;
+	font-size: 0.9em;
+	color: #d9534f; /* Rouge pour le texte du code */
+}
+
+pre {
+	background: #fff; /* Blanc */
+	border: 1px solid #ddd; /* Gris clair */
+	padding: 10px;
+	border-radius: 3px;
+	overflow-x: auto;
+}
+
+.header-img {
+	max-width: 200px;
+	margin: auto;
+}

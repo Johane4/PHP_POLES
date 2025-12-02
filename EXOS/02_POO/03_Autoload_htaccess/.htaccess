@@ -1,0 +1,20 @@
+# Utilisation des URLs propres
+# .htaccess simple pour que les URLs soient propres (par exemple, sans le ?action=add visible dans l'URL)
+# Activer le moteur de réécriture
+RewriteEngine On
+
+
+# Définir le chemin de base (ajustez-le en fonction de votre projet)
+RewriteBase /PHP_POLES/COURS_POO/02_Exercices/02_Correction/03_Autoload_htaccess/
+
+# Si l'URL correspond à un fichier ou un dossier existant, ne pas réécrire
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Réécrire les URLs propres
+# RewriteRule ^$ index.php [L] toutes les requetes redirigées vers index.php
+RewriteRule ^([^/]+)$ index.php?action=$1 [L,QSA]
+# RewriteRule ^([^/]+)/([^/]+)$ index.php?action=$1&id=$2 [L,QSA]
+
+
+
