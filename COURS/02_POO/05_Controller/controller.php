@@ -91,7 +91,7 @@ abstract class BaseController {
             }
         </code>
     </pre>
-        <p>Les méthodes comme <code>index</code> et <code>about</code> utilisent simplement la méthode <code>render</code> pour afficher la vue correspondante avec des données spécifiques.</p>
+    <p>Les méthodes comme <code>index</code> et <code>about</code> utilisent simplement la méthode <code>render</code> pour afficher la vue correspondante avec des données spécifiques.</p>
 
     <h3>Exemple de <code>header.php</code> :</h3>
     <pre>
@@ -101,7 +101,7 @@ abstract class BaseController {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?? 'Mon Site' ?></title>
+    <title><?php echo $title ?? 'Mon Site' ?></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -127,7 +127,7 @@ abstract class BaseController {
     <h3>Exemple de <code>home.php</code> :</h3>
     <pre>
         <code>
-<h2><?= $title ?></h2>
+<h2><?php echo $title ?></h2>
 <p>Bienvenue sur notre site !</p>
         </code>
     </pre>
