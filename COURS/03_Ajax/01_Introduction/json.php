@@ -6,4 +6,6 @@
         ["name" => "Belmondo", "email" => "belmondo@example.com"],
     ];
 
+    // Convertit le tableau PHP en JSON
+    echo json_encode($users);
     ?>
