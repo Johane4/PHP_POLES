@@ -61,3 +61,26 @@ document.getElementById("request").addEventListener("click", () => {
     })
     .catch((error) => console.error("Erreur :", error)); // Gestion des erreurs
 });
+
+// ENCODAGE JSON
+document.getElementById("jsonRequest").addEventListener("click", () => {
+  const user = {
+    name: "Jean Dupont",
+    email: "jean.dupont@example.com",
+  }; // objet JS classique
+
+  //const user = {
+  //"name": "Jean Dupont",
+  //"email": "jean.dupont@example.com",
+  //}; // format JSON
+
+  // Encode l'objet JSON pour l'envoyer via l'URL
+  const encodedJson = encodeURIComponent(JSON.stringify(user));
+
+  fetch(`request.php?data=${encodedJson}`)
+    .then((response) => response.text()) // Attente d'une réponse texte
+    .then((data) => {
+      document.getElementById("resultJson").textContent = data; // Affiche la réponse
+    })
+    .catch((error) => console.error("Erreur :", error)); // Gestion des erreurs
+});
