@@ -5,6 +5,7 @@
 ## 📌 Présentation
 
 **PHP_POLES** est un dépôt pédagogique regroupant des **cours et exercices en PHP**, incluant :
+
 - **PHP procédural**
 - **Programmation Orientée Objet (POO)**
 - **AJAX / Fetch**
@@ -32,6 +33,7 @@ PHP_POLES/
 ## 🚀 Installation & Prérequis
 
 ### Prérequis
+
 - PHP 7.4 ou supérieur
 - Serveur local (MAMP, XAMPP, WAMP)
 - Navigateur web moderne
@@ -59,6 +61,7 @@ http://localhost:8888/PHP_POLES/
 ## 💡 Contenu pédagogique
 
 ### 🐘 PHP procédural
+
 - Syntaxe de base
 - Variables, conditions, boucles
 - Fonctions
@@ -66,6 +69,7 @@ http://localhost:8888/PHP_POLES/
 - Formulaires et traitement des données
 
 ### 🧱 Programmation Orientée Objet (POO)
+
 - Classes et objets
 - Propriétés et méthodes
 - Constructeurs
@@ -73,6 +77,7 @@ http://localhost:8888/PHP_POLES/
 - Premiers pas vers une architecture plus structurée
 
 ### 🔄 AJAX / Fetch
+
 - Requêtes asynchrones
 - Communication JavaScript ↔ PHP
 - Utilisation de `fetch`
@@ -116,6 +121,5 @@ Projet à usage pédagogique libre.
 
 ## 👩‍💻 Auteure
 
-Projet maintenu par **Johane4**  
-Formatrice développeuse web
-
+Projet maintenu par **Johane4 AKA Johane Omiscar**  
+Formatrice et développeuse web
